@@ -1,3 +1,15 @@
-<p>
-  events works!
-</p>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let event of getEvents()">
+      <ion-title>{{ event.summary }}</ion-title>
+      <ion-button (click)="deleteEvent(event.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="createEvent()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

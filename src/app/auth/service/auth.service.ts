@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { UserService } from "src/app/home/service/user.service";
+import { UserService } from "src/app/home/service/user/user.service";
 import { AuthGuard } from "../guard/auth-guard";
 
 declare var gapi: any;
@@ -71,39 +71,5 @@ export class AuthService {
   async signOut() {
     await this.googleAuth.signOut();
     this.loggedIn.next(false);
-  }
-
-  async getCalendar() {
-    const events = await gapi.client.calendar.events.list({
-      calendarId: "primary",
-      timeMin: new Date().toISOString(),
-      showDeleted: false,
-      singleEvents: true,
-      maxResults: 10,
-      orderBy: "startTime",
-    });
-
-    this.calendarItems = events.result.items;
-    console.log(this.calendarItems);
-  }
-
-  async insertEvent() {
-    const insert = await gapi.client.calendar.events.insert({
-      calendarId: "primary",
-      start: {
-        dateTime: "2020-12-25T17:06:00.000Z",
-        timeZone: "America/Los_Angeles",
-      },
-      end: {
-        dateTime: "2020-12-25T18:00:00.000Z",
-        timeZone: "America/Los_Angeles",
-      },
-      summary: "Have Fun!!!",
-      description: "Wohoooo you did it",
-    });
-  }
-
-  hoursFromNow(n) {
-    return new Date(Date.now() + n * 1000 * 60 * 60).toString();
   }
 }

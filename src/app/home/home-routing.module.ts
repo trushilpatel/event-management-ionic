@@ -6,7 +6,15 @@ import { HomePage } from "./home.page";
 
 const routes: Routes = [
   {
-    path: "",
+    path: "create-event",
+    loadChildren: () =>
+      import("./page/events/create-event/create-event.module").then(
+        (m) => m.CreateEventPageModule
+      ),
+    pathMatch: "full",
+  },
+  {
+    path: "tabs",
     component: HomePage,
     children: [
       {
@@ -17,8 +25,12 @@ const routes: Routes = [
         path: "calendar",
         component: CalendarComponent,
       },
-      { path: "**", redirectTo: "calendar" },
+      { path: "**", redirectTo: "events" },
     ],
+  },
+  {
+    path: "**",
+    redirectTo: "tabs",
   },
 ];
 

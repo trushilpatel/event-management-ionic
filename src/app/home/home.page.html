@@ -1,5 +1,11 @@
 <ion-header>
   <ion-toolbar>
+    <ion-item-group slot="start">
+      <ion-title>{{title}}</ion-title>
+      <ion-thumbnail slot="start">
+        <img src="assets/icon/favicon.ico" alt="" />
+      </ion-thumbnail>
+    </ion-item-group>
     <ion-item-group slot="end">
       <ion-avatar slot="end">
         <ion-img
@@ -19,7 +25,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet (setTitle)="setTitle($event)"></ion-router-outlet>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="calendar">
@@ -27,7 +33,7 @@
         <ion-label>Schedule</ion-label>
       </ion-tab-button>
       <ion-tab-button tab="events">
-        <ion-icon name="person-circle"></ion-icon>
+        <ion-icon name="airplane-outline"></ion-icon>
         <ion-label>Events</ion-label>
       </ion-tab-button>
     </ion-tab-bar>

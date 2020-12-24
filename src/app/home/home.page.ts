@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { PopoverController } from "@ionic/angular";
 import { AuthService } from "../auth/service/auth.service";
 import { PopoverComponent } from "../common/popover/popover.component";
-import { UserService } from "./service/user.service";
+import { UserService } from "./service/user/user.service";
 
 @Component({
   selector: "app-home",
@@ -42,5 +42,10 @@ export class HomePage {
   async signOut() {
     await this.authService.signOut();
     this.router.navigate(["/auth"]);
+  }
+
+  setTitle(title) {
+    console.log("HOME" + title);
+    this.title = title;
   }
 }

@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" color="dark" size="small">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-button>
+    <ion-title>Create Event</ion-title>
+    <ion-icon
+      name="save"
+      slot="end"
+      class="ion-padding-end"
+      style="font-size: 2rem"
+      (click)="submit()"
+    >
+    </ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-sm="8">
+        <ion-card>
+          <form [formGroup]="eventForm" (ngSubmit)="submit()">
+            <ion-item>
+              <ion-label position="floating">Summary</ion-label>
+              <ion-input formControlName="summary" clearInput></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-input formControlName="description" clearInput></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Start Date</ion-label>
+              <ion-datetime
+                formControlName="startDate"
+                display-format="DD:MMMM:YYYY"
+                picket-format="YYYY:MM:DD"
+                placeholder="Select Date"
+              ></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>Start Time</ion-label>
+              <ion-datetime
+                formControlName="startTime"
+                display-format="+HH:mm"
+                picker-format="+HH:mm"
+                placeholder="Select Time"
+              >
+              </ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>End Date</ion-label>
+              <ion-datetime
+                formControlName="endDate"
+                display-format="DD:MMMM:YYYY"
+                picket-format="YYYY:MM:DD"
+                placeholder="Select Date"
+              ></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>End Time</ion-label>
+              <ion-datetime
+                formControlName="endTime"
+                display-format="+HH:mm"
+                picker-format="+HH:mm"
+                placeholder="Select Time"
+              ></ion-datetime>
+            </ion-item>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="submit()">
+      <ion-icon name="save"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
