@@ -1,20 +1,35 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-item-group slot="end">
+      <ion-avatar slot="end">
+        <ion-img
+          [src]="profile.image"
+          class="ion-padding"
+          (click)="avatarClicked($event)"
+        ></ion-img>
+      </ion-avatar>
+    </ion-item-group>
+    <ion-icon
+      name="log-out"
+      style="font-size: 2rem"
+      slot="end"
+      (click)="signOut()"
+    ></ion-icon>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="calendar">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Schedule</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="events">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>Events</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
