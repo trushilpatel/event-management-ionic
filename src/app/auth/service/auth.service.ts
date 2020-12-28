@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { UserService } from "src/app/home/service/user/user.service";
 import { AuthGuard } from "../guard/auth-guard";
@@ -9,17 +10,21 @@ declare var gapi: any;
   providedIn: "root",
 })
 export class AuthService {
+  isLoadingFiles: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   calendarItems: any[];
   googleAuth: any;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.initClient();
   }
 
   async initClient() {
     gapi.load("client", async () => {
       console.log("Loading Client");
+      this.isLoadingFiles.next(true);
       await gapi.client.init({
         apiKey: "AIzaSyCuLdji7aiiELTg9bhuiR0yf7BLkOHzivw",
         clientId:
@@ -32,7 +37,14 @@ export class AuthService {
       await gapi.client.load("calendar", "v3", () =>
         console.log("Loaded Calendar")
       );
+
       this.googleAuth = await gapi.auth2.getAuthInstance();
+
+      if (await this.isSignedIn()) {
+        this.router.navigate(["/home"]);
+      }
+
+      this.isLoadingFiles.next(false);
       console.log("LOADED CLIENT");
     });
   }

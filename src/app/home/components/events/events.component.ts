@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { LoadingController } from "@ionic/angular";
 import { EventService } from "../../service/event/event.service";
 
 @Component({
@@ -11,10 +12,12 @@ export class EventsComponent implements OnInit {
   title: string = "Events";
   events: Array<any>;
 
-  constructor(private router: Router, private eventService: EventService) {
+  constructor(
+    private router: Router,
+    private eventService: EventService,
+    private loadingController: LoadingController
+  ) {
     this.eventService.calendarItems.subscribe((items) => {
-      console.log("EVENT SUBSCRIBER");
-
       this.events = items;
     });
   }
@@ -31,5 +34,12 @@ export class EventsComponent implements OnInit {
 
   async deleteEvent(id: string) {
     await this.eventService.deleteEvent(id);
+  }
+
+  async editEvent(id: string, event: Event) {
+    console.log(id, event);
+    this.router.navigate(["/home/edit-event"], {
+      state: { data: { id, event } },
+    });
   }
 }

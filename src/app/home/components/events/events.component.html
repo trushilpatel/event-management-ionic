@@ -1,13 +1,47 @@
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let event of getEvents()">
-      <ion-title>{{ event.summary }}</ion-title>
-      <ion-button (click)="deleteEvent(event.id)">
-        <ion-icon name="trash"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
-  <ion-fab vertical="bottom" horizontal="end">
+  <ion-grid
+    *ngIf="getEvents() == null || getEvents().length == 0; else listRef"
+    style="height: 100%"
+  >
+    <ion-row style="height: 100%" class="ion-justify-content-center">
+      <ion-col size="12" class="ion-align-self-center">
+        <p class="ion-text-center">There is No Events For You.</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ng-template #listRef>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size-md="8">
+          <ion-card *ngFor="let event of events">
+            <ion-item>
+              <ion-label class="ion-margin ion-pagging">
+                {{ event.summary }}
+              </ion-label>
+              <ion-button (click)="editEvent(event.id, event)">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button (click)="deleteEvent(event.id)">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-item>
+            <ion-card-content>
+              <ion-card-subtitle>
+                Description : {{ event.description }}
+              </ion-card-subtitle>
+              <ion-card-subtitle>
+                Start : {{ event.start.dateTime }}
+              </ion-card-subtitle>
+              <ion-card-subtitle
+                >End : {{ event.end.dateTime }}</ion-card-subtitle
+              >
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="createEvent()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

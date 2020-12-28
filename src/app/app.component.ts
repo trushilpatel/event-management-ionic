@@ -11,19 +11,23 @@ import { AuthService } from "./auth/service/auth.service";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
+  isLoadingFiles: boolean = true;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private authService: AuthService
   ) {
+    setTimeout(() => {
+      this.isLoadingFiles = false;
+    }, 1500);
     this.initializeApp();
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
     });
   }
 }

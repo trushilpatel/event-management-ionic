@@ -22,6 +22,7 @@ export class EventService {
       orderBy: "startTime",
     });
     this.calendarItems.next(events.result.items);
+    console.log("NEXT");
   }
 
   async deleteEvent(id: string) {
@@ -33,8 +34,19 @@ export class EventService {
     await this.getEvents;
   }
 
-  async insertEvent(event: CreateEvent) {
+  async insertEvent(event: CalendarEvent) {
     const result = await gapi.client.calendar.events.insert(event);
+    await this.getEvents();
+  }
+
+  async editEvent(id: string, event: CalendarEvent) {
+    await gapi.client.calendar.events
+      .update({
+        calendarId: "primary",
+        eventId: id,
+        resource: event,
+      })
+      .execute();
     await this.getEvents();
   }
 }

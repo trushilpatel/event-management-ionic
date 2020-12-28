@@ -1,4 +1,4 @@
-interface CreateEvent {
+interface CalendarEvent {
   calendarId: string;
   start: {
     dateTime: string;

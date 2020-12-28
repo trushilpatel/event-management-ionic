@@ -1,19 +1,22 @@
-<ion-content [fullscreen]="true" class="ion-padding ion-margin">
-  <ion-grid style="height: 100%">
-    <ion-row style="height: 100%" class="ion-justify-content-center">
-      <ion-col size="12" size-md="6" class="ion-align-self-center">
-        <img src="assets/images/events.jpg" width="100%" />
-        <ion-button
-          (click)="googleSignIn()"
-          expand="block"
-          shape="round"
-          color="danger"
-          style="margin-top: 2rem"
-          class="ion-no-padding"
-        >
-          Sign In with Google
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid></ion-content
->
+<ion-content class="ion-padding ion-margin">
+  <div *ngIf="checkingIsSignedIn;else authPageRef"></div>
+  <ng-template #authPageRef>
+    <ion-grid style="height: 100%">
+      <ion-row style="height: 100%" class="ion-justify-content-center">
+        <ion-col size="12" size-md="6" class="ion-align-self-center">
+          <img src="assets/images/events.jpg" width="100%" />
+          <ion-button
+            (click)="googleSignIn()"
+            expand="block"
+            shape="round"
+            color="danger"
+            style="margin-top: 2rem"
+            class="ion-no-padding"
+          >
+            Sign In with Google
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-template>
+</ion-content>

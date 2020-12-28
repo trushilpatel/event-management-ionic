@@ -1,5 +1,11 @@
 <ion-app>
-  <ion-content>
-    <ion-router-outlet></ion-router-outlet>
-  </ion-content>
+  <div *ngIf="isLoadingFiles; else appRef" class="splash">
+    <img src="assets/images/events.jpg" alt="" height="100%" width="100%" />
+    <ion-progress-bar type="indeterminate" class="loading"></ion-progress-bar>
+  </div>
+  <ng-template #appRef>
+    <ion-content>
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
+  </ng-template>
 </ion-app>

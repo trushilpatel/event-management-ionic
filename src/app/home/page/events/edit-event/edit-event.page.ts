@@ -1,15 +1,18 @@
+import { Route } from "@angular/compiler/src/core";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, RouterStateSnapshot } from "@angular/router";
 import { ToastController } from "@ionic/angular";
 import { EventService } from "src/app/home/service/event/event.service";
 
 @Component({
-  selector: "app-create-event",
-  templateUrl: "./create-event.page.html",
-  styleUrls: ["./create-event.page.scss"],
+  selector: "app-edit-event",
+  templateUrl: "./edit-event.page.html",
+  styleUrls: ["./edit-event.page.scss"],
 })
-export class CreateEventPage implements OnInit {
+export class EditEventPage implements OnInit {
+  id: string;
+
   eventForm: FormGroup = new FormGroup({
     summary: new FormControl("", [Validators.required]),
     description: new FormControl("", [Validators.required]),
@@ -23,7 +26,20 @@ export class CreateEventPage implements OnInit {
     private toastController: ToastController,
     private eventService: EventService,
     private router: Router
-  ) {}
+  ) {
+    const data = this.router.getCurrentNavigation().extras.state.data;
+    this.id = data!.id;
+    console.log(data);
+
+    this.eventForm.patchValue({
+      summary: data!.event!.summary,
+      description: data!.event!.description,
+      startDate: data!.event!.start!.dateTime,
+      startTime: data!.event!.start!.dateTime,
+      endDate: data!.event!.end!.dateTime,
+      endTime: data!.event!.end!.dateTime,
+    });
+  }
 
   ngOnInit() {}
 
@@ -53,7 +69,7 @@ export class CreateEventPage implements OnInit {
           data.endTime.substring(data.endTime.indexOf("T") + 1),
       },
     };
-    this.eventService.insertEvent(event);
+    await this.eventService.editEvent(this.id, event);
     this.router.navigate(["/home/events"]);
   }
 }

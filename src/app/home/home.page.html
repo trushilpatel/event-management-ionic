@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary ">
     <ion-item-group slot="start">
-      <ion-title>{{title}}</ion-title>
       <ion-thumbnail slot="start">
         <img src="assets/icon/favicon.ico" alt="" />
       </ion-thumbnail>
+      <ion-title>{{title}}</ion-title>
     </ion-item-group>
     <ion-item-group slot="end">
       <ion-avatar slot="end">
         <ion-img
-          [src]="profile.image"
+          [src]="profile?.image"
           class="ion-padding"
           (click)="avatarClicked($event)"
         ></ion-img>
@@ -30,7 +30,7 @@
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="calendar">
         <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
+        <ion-label>Calendar</ion-label>
       </ion-tab-button>
       <ion-tab-button tab="events">
         <ion-icon name="airplane-outline"></ion-icon>

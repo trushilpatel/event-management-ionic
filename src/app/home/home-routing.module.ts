@@ -14,6 +14,14 @@ const routes: Routes = [
     pathMatch: "full",
   },
   {
+    path: "edit-event",
+    loadChildren: () =>
+      import("./page/events/edit-event/edit-event.module").then(
+        (m) => m.EditEventPageModule
+      ),
+    pathMatch: "full",
+  },
+  {
     path: "tabs",
     component: HomePage,
     children: [

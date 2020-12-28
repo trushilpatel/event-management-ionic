@@ -29,14 +29,6 @@ export class HomePage {
 
   async avatarClicked(event) {
     console.log("AVATAR");
-
-    // const popover = await this.popOverController.create({
-    //   component: PopoverComponent,
-    //   event: event,
-    //   translucent: true,
-    // });
-
-    // return await popover.present();
   }
 
   async signOut() {
