@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
-import { UserService } from "src/app/home/service/user/user.service";
-import { AuthGuard } from "../guard/auth-guard";
+import { UserService } from "src/app/events/service/user/user.service";
 
 declare var gapi: any;
 

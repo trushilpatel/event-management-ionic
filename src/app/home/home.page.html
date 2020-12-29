@@ -6,15 +6,13 @@
       </ion-thumbnail>
       <ion-title>{{title}}</ion-title>
     </ion-item-group>
-    <ion-item-group slot="end">
-      <ion-avatar slot="end">
-        <ion-img
-          [src]="profile?.image"
-          class="ion-padding"
-          (click)="avatarClicked($event)"
-        ></ion-img>
-      </ion-avatar>
-    </ion-item-group>
+    <ion-avatar *ngIf="profile !== null&& profile.image !== null" slot="end">
+      <ion-img
+        [src]="profile?.image"
+        class="ion-padding"
+        (click)="avatarClicked($event)"
+      ></ion-img>
+    </ion-avatar>
     <ion-icon
       name="log-out"
       style="font-size: 2rem"

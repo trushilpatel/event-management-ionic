@@ -1,10 +1,5 @@
-import {
-  AfterViewChecked,
-  AfterViewInit,
-  Component,
-  OnInit,
-  Output,
-} from "@angular/core";
+import { Component, Output } from "@angular/core";
+import { CalendarOptions } from "@fullcalendar/angular";
 import { EventEmitter } from "events";
 
 @Component({
@@ -12,18 +7,18 @@ import { EventEmitter } from "events";
   templateUrl: "./calendar.component.html",
   styleUrls: ["./calendar.component.scss"],
 })
-export class CalendarComponent implements AfterViewChecked {
+export class CalendarComponent {
+  calendarOptions: CalendarOptions = {
+    initialView: "dayGridMonth",
+    dateClick: this.handleDateClick.bind(this),
+  };
+
   title: string = "Calendar";
   @Output() setTitle = new EventEmitter();
 
-  constructor() {
-    this.emitSetTitle();
-  }
+  constructor() {}
 
-  ngAfterViewChecked() {}
-
-  emitSetTitle() {
-    console.log(this.setTitle.emit(this.title));
-    console.log(this.title);
+  handleDateClick(arg) {
+    console.log(arg);
   }
 }

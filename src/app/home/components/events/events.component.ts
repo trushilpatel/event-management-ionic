@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { LoadingController } from "@ionic/angular";
-import { EventService } from "../../service/event/event.service";
+import { EventService } from "../../../events/service/event/event.service";
 
 @Component({
   selector: "app-events",

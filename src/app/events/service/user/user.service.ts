@@ -10,7 +10,6 @@ export class UserService {
   constructor() {}
 
   setProfile(profile) {
-    console.log("Setting Profile", profile);
     this.profile.next(profile);
   }
 }

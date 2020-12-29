@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router, RouterStateSnapshot } from "@angular/router";
 import { ToastController } from "@ionic/angular";
-import { EventService } from "src/app/home/service/event/event.service";
+import { EventService } from "src/app/events/service/event/event.service";
 
 @Component({
   selector: "app-edit-event",

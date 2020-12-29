@@ -1,10 +1,7 @@
-import { ThrowStmt } from "@angular/compiler";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { PopoverController } from "@ionic/angular";
 import { AuthService } from "../auth/service/auth.service";
-import { PopoverComponent } from "../common/popover/popover.component";
-import { UserService } from "./service/user/user.service";
+import { UserService } from "../events/service/user/user.service";
 
 @Component({
   selector: "app-home",
@@ -17,13 +14,11 @@ export class HomePage {
 
   constructor(
     private authService: AuthService,
-    private popOverController: PopoverController,
     private router: Router,
     userService: UserService
   ) {
     userService.profile.subscribe((profile) => {
       this.profile = profile;
-      console.log(this.profile);
     });
   }
 

@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: "create-event",
     loadChildren: () =>
-      import("./page/events/create-event/create-event.module").then(
+      import("../events/create-event/create-event.module").then(
         (m) => m.CreateEventPageModule
       ),
     pathMatch: "full",
@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: "edit-event",
     loadChildren: () =>
-      import("./page/events/edit-event/edit-event.module").then(
+      import("../events/edit-event/edit-event.module").then(
         (m) => m.EditEventPageModule
       ),
     pathMatch: "full",
@@ -33,7 +33,7 @@ const routes: Routes = [
         path: "calendar",
         component: CalendarComponent,
       },
-      { path: "**", redirectTo: "events" },
+      { path: "**", redirectTo: "calendar" },
     ],
   },
   {

@@ -22,12 +22,9 @@ export class EventService {
       orderBy: "startTime",
     });
     this.calendarItems.next(events.result.items);
-    console.log("NEXT");
   }
 
   async deleteEvent(id: string) {
-    console.log("DELETE ", id);
-
     await gapi.client.calendar.events
       .delete({ calendarId: "primary", eventId: id })
       .execute();
