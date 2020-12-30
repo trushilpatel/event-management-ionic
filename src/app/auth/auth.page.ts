@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { LoadingController } from "@ionic/angular";
 import { GoogleLoginProvider, SocialAuthService } from "angularx-social-login";
 import { environment } from "../../environments/environment";
-import { AuthService } from "./service/auth.service";
 
 @Component({
   selector: "app-auth",
@@ -15,9 +14,9 @@ export class AuthPage implements OnInit {
   private key: string = environment.GOOGLE_CLIENT_ID;
 
   constructor(
-    // private authService: SocialAuthService,
+    private authService: SocialAuthService,
     private router: Router,
-    private authService: AuthService,
+    // private authService: AuthService,
     private loadingController: LoadingController
   ) {
     this.presentLoading();
@@ -26,8 +25,8 @@ export class AuthPage implements OnInit {
   ngOnInit() {}
 
   async googleSignIn() {
-    // const data = await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    let data = await this.authService.signIn();
+    const data = await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    // let data = await this.authService.signIn();
     this.router.navigate(["/"]);
   }
 
@@ -37,9 +36,10 @@ export class AuthPage implements OnInit {
       message: "Please wait...",
     });
     await loading.present();
-    if (this.authService.isSignedIn()) {
-      loading.dismiss();
-    }
+    // if (this.authService.isSignedIn()) {
+
+    //   loading.dismiss();
+    // }
     this.checkingIsSignedIn = false;
   }
 }

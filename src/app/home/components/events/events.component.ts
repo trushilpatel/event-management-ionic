@@ -17,7 +17,7 @@ export class EventsComponent implements OnInit {
     private eventService: EventService,
     private loadingController: LoadingController
   ) {
-    this.eventService.calendarItems.subscribe((items) => {
+    this.eventService.calendarEvents.subscribe((items) => {
       this.events = items;
     });
   }
@@ -36,10 +36,9 @@ export class EventsComponent implements OnInit {
     await this.eventService.deleteEvent(id);
   }
 
-  async editEvent(id: string, event: Event) {
-    console.log(id, event);
+  async editEvent(id: string) {
     this.router.navigate(["/home/edit-event"], {
-      state: { data: { id, event } },
+      state: { data: { eventId: id } },
     });
   }
 }

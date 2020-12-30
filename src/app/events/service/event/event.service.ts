@@ -7,10 +7,14 @@ declare var gapi: any;
   providedIn: "root",
 })
 export class EventService {
-  calendarItems: BehaviorSubject<Array<any>> = new BehaviorSubject([]);
+  calendarEvents: BehaviorSubject<Array<any>> = new BehaviorSubject([]);
 
   constructor() {
     this.getEvents();
+  }
+
+  getEventFromId(id: string) {
+    return this.calendarEvents.value.find((event) => event.id === id);
   }
 
   async getEvents() {
@@ -21,7 +25,7 @@ export class EventService {
       singleEvents: true,
       orderBy: "startTime",
     });
-    this.calendarItems.next(events.result.items);
+    this.calendarEvents.next(events.result.items);
   }
 
   async deleteEvent(id: string) {

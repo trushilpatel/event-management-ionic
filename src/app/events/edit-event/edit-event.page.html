@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-button slot="start" size="small">
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="home" color="light"></ion-back-button>
     </ion-button>
     <ion-title>Edit Event</ion-title>
     <ion-icon
@@ -15,11 +15,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-no-margin">
   <ion-grid style="height: 100%">
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-sm="8" class="ion-align-self-center">
-        <ion-card>
+        <ion-card class="ion-no-margin" style="margin: 0%">
           <form [formGroup]="eventForm" (ngSubmit)="submit()">
             <ion-item>
               <ion-label position="floating">Summary</ion-label>

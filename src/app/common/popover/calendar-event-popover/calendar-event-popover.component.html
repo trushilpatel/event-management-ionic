@@ -1,0 +1,23 @@
+<ion-card class="ion-no-margin">
+  <ion-header class="ion-padding-start ion-padding-end" color="dark">
+    <ion-toolbar>
+      {{ title }}
+      <div slot="end">
+        <ion-icon name="create-outline" style="font-size: 1.5rem" (click)="editEvent()"></ion-icon>
+        <ion-icon name="trash" style="font-size: 1.5rem" (click)="deleteEvent()"></ion-icon>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <ion-card-subtitle>
+      <ion-text color="dark"> Start: </ion-text>
+      {{ startDate }}
+    </ion-card-subtitle>
+    <p></p>
+    <ion-card-subtitle>
+      <ion-text color="dark">End: </ion-text>
+      {{ endDate }}
+    </ion-card-subtitle>
+  </ion-content>
+</ion-card>

@@ -1,7 +1,6 @@
-import { Route } from "@angular/compiler/src/core";
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router, RouterStateSnapshot } from "@angular/router";
+import { Router } from "@angular/router";
 import { ToastController } from "@ionic/angular";
 import { EventService } from "src/app/events/service/event/event.service";
 
@@ -10,7 +9,7 @@ import { EventService } from "src/app/events/service/event/event.service";
   templateUrl: "./edit-event.page.html",
   styleUrls: ["./edit-event.page.scss"],
 })
-export class EditEventPage implements OnInit {
+export class EditEventPage {
   id: string;
 
   eventForm: FormGroup = new FormGroup({
@@ -27,21 +26,18 @@ export class EditEventPage implements OnInit {
     private eventService: EventService,
     private router: Router
   ) {
-    const data = this.router.getCurrentNavigation().extras.state.data;
-    this.id = data!.id;
-    console.log(data);
-
+    const eventId = this.router.getCurrentNavigation().extras.state.data
+      .eventId;
+    const eventData = eventService.getEventFromId(eventId);
     this.eventForm.patchValue({
-      summary: data!.event!.summary,
-      description: data!.event!.description,
-      startDate: data!.event!.start!.dateTime,
-      startTime: data!.event!.start!.dateTime,
-      endDate: data!.event!.end!.dateTime,
-      endTime: data!.event!.end!.dateTime,
+      summary: eventData!.summary,
+      description: eventData!.description,
+      startDate: eventData!.start!.dateTime,
+      startTime: eventData!.start!.dateTime,
+      endDate: eventData!.end!.dateTime,
+      endTime: eventData!.end!.dateTime,
     });
   }
-
-  ngOnInit() {}
 
   async submit() {
     if (this.eventForm.invalid) {

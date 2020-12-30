@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-button slot="start" size="small">
-      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-back-button defaultHref="home" color="light"></ion-back-button>
     </ion-button>
     <ion-title>Create Event</ion-title>
     <ion-icon
@@ -36,6 +36,7 @@
                 display-format="DD:MMMM:YYYY"
                 picket-format="YYYY:MM:DD"
                 placeholder="Select Date"
+                max="2050"
               ></ion-datetime>
             </ion-item>
             <ion-item>
@@ -55,6 +56,7 @@
                 display-format="DD:MMMM:YYYY"
                 picket-format="YYYY:MM:DD"
                 placeholder="Select Date"
+                max="2050"
               ></ion-datetime>
             </ion-item>
             <ion-item>
@@ -64,7 +66,8 @@
                 display-format="+HH:mm"
                 picker-format="+HH:mm"
                 placeholder="Select Time"
-              ></ion-datetime>
+              >
+              </ion-datetime>
             </ion-item>
           </form>
         </ion-card>

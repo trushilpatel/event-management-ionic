@@ -1,5 +1,8 @@
 {
   "name": "Event Management",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }
